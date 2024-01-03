@@ -22,7 +22,7 @@
         font-family: serif;
       }
       ol > li::marker {
-        font-weight: bold;    /* bold list item bullet/number */
+        font-weight: bold; /* bold list item bullet/number */
       }
     </style>
   </head>
@@ -32,8 +32,8 @@
       <section>
         <h2>Chapter 1</h2>
         <span class="h2-span">The MIPS Architecture</span>
-        <h3>1.12 Summary</h3>
         <article>
+          <h3>1.12 Summary</h3>
           <p>
             When we write a program in assembly language we are creating a list
             of instructions that we want the processor to perform to accomplish
@@ -76,6 +76,49 @@
       <section>
         <h2>Chapter 2</h2>
         <span class="h2-span">Pseudocode</span>
+        <article>
+          <h3>2.1 Introduction</h3>
+          <p>
+            Experienced programmers develop their algorithms using high-level
+            programming constructs such as:
+          </p>
+          <pre>
+            <code>
+if (condition) do { this block of code } else do { that block of code };
+while (condition) do { this block of code };
+for (t0=1, t0 &lt; s0, t0++) do { this block of code };
+            </code>
+            </pre>
+          <p>
+            The key to making MIPS assembly language programming easy is to
+            initially develop the algorithm using a high level
+            <span style="font-weight: bold">pseudocode</span> notation with
+            which we are already familiar. Then in the final phase, translate
+            these high level pseudocode expressions into MIPS assembly language.
+            In other words, in the final phase we are performing the same
+            function that a compiler performs, which is to translate high-level
+            code into the equivalent assembly language code.
+          </p>
+        </article>
+        <article>
+          <h3>2.2 Develop the Algorithm in Pseudocode</h3>
+          <p>
+            When documenting an algorithm in a language such as Pascal, C, C++,
+            or JAVA, programmers use descriptive variable names such as:
+            <span style="font-family: monospace">
+              speed, volume, size, count, amount
+            </span>
+            etc. After the program is compiled, these variable names correspond
+            to memory locations, and the values stored in these memory locations
+            correspond to the values of these variables that are referenced most
+            often in processor registers, because access to a variable in a
+            processor register is faster than access to RAM. MIPS has 32
+            processor registers whose name were defined in Table 1.1. In the
+            case of the MIPS architecture, all of the data manipulation
+            instructions and the control instructions require that their
+            operands be in the register file.
+          </p>
+        </article>
       </section>
     </main>
   </body>
