@@ -211,8 +211,55 @@ end:      li        $v0,4             # system call code for print string
 
           li        $v0,10            # terminate the program run and
           syscall                     # return control to system
+
             </code>
           </pre>
+          <div style="padding-left: 10rem">
+            <span
+              style="
+                font-weight: bolder;
+                text-transform: uppercase;
+                background-color: yellow;
+              "
+              >Must have a blank line at the end of the text file</span
+            >
+          </div>
+        </article>
+        <article>
+          <h3>2.3 Register Usage Convention</h3>
+          <p>
+            Within the register file, different sets of registers have been
+            given names to remind the programmer of a convention, which all MIPS
+            assembly language programmers are expected to abide by. If all the
+            members of a programming team do not adhere to the same convention,
+            the entire effort will result in disaster. To simulate this
+            situation, everyone using this book is expected to adhere to the
+            same convention. Programs should run correctly, even if the class
+            members randomly exchange their functions.
+          </p>
+          <ul style="list-style: none">
+            <li>
+              Variables in the main program should be assigned to registers
+              <code>$s0</code> through <code>$s7</code>.
+            </li>
+            <li>
+              <span style="font-weight: bolder">Nested Functions:</span>
+              functions that call other functions.
+            </li>
+            <li>
+              <span style="font-weight: bolder">Leaf Function:</span> A function
+              that does not call another function.
+            </li>
+            <li>
+              Registers <code>$t0</code> through <code>$t9</code> can be used with the understanding that no other code modules expect values in these register will be maintained/managed.
+            </li>
+            <li>
+              Registers <code>$s0</code> through <code>$s7</code> are referred to as <span style="font-style: italic;font-weight: bold;">callee-saved</span> registers.
+            </li>
+            <li>
+              Registers <code>$t0</code> through <code>$t9</code> are referred to as <span style="font-style: italic; font-weight: bold;">caller-saved</span> registers.
+            </li>
+          </ul>
         </article>
       </section>
     </main>
