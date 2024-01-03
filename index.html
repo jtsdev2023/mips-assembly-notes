@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDEV-310 Notes</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 62.5%;
+      }
+
+      main {
+        font-size: 1.2rem;
+      }
+      li {
+        padding-bottom: 1rem;
+      }
+      .h2-span {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        font-family: serif;
+      }
+      ol > li::marker {
+        font-weight: bold;    /* bold list item bullet/number */
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>MIPS Architecture Notes</h1>
+      <section>
+        <h2>Chapter 1</h2>
+        <span class="h2-span">The MIPS Architecture</span>
+        <h3>1.12 Summary</h3>
+        <article>
+          <p>
+            When we write a program in assembly language we are creating a list
+            of instructions that we want the processor to perform to accomplish
+            some task (an algorithm). As soon as we have acquired a functional
+            mode of the processor and know exactly what instructions the
+            processor can perform, then we will have mastered the first
+            necessary componment to becoming a MIPS assembly language
+            programmer.
+          </p>
+          <p>
+            The continuous step-by-step functional operation of our simplified
+            model for the MIPS architecture can be described as:
+          </p>
+          <ol>
+            <li>
+              An instruction is fetched from memory at the location specified by
+              the Program Counter. The instruction is loaded into the
+              Instruction Register (IR). The Program Counter is incremented y 4.
+            </li>
+            <li>
+              Two 5-bit codes <code>Rs</code> and <code>Rt</code> within the
+              instruction specify which register file locations are accessed to
+              obtain two 32-bit source operands.
+            </li>
+            <li>
+              The two 32-bit source operands are routed to the ALU inputs where
+              some operation is performed depending upon the Op-Code in the
+              instruction.
+            </li>
+            <li>
+              The result of the operation is placed back into the register file
+              at a location specified by the 5-bit <code>Rd</code> code in the
+              IR.
+              <br />
+              Go to step 1.
+            </li>
+          </ol>
+        </article>
+      </section>
+      <section>
+        <h2>Chapter 2</h2>
+        <span class="h2-span">Pseudocode</span>
+      </section>
+    </main>
+  </body>
+</html>
