@@ -24,6 +24,9 @@
       ol > li::marker {
         font-weight: bold; /* bold list item bullet/number */
       }
+      code {
+        color: rgb(0, 0, 100);
+      }
     </style>
   </head>
   <body>
@@ -118,6 +121,98 @@ for (t0=1, t0 &lt; s0, t0++) do { this block of code };
             instructions and the control instructions require that their
             operands be in the register file.
           </p>
+          <p>
+            A MIPS assembly language programmer must specify within each
+            instruction which processor registers are going to be utilized. For
+            example, we may have a value in register
+            <code>$t0</code> corresponding to "speed", a value in register
+            <code>$t1</code> corresponding to "volume", a value in register
+            <code>$t2</code> corresponding to "size", and a value in register
+            <code>$t3</code> corresponding to "count". When using pseudocode to
+            document an assembly language program, we must use the names of the
+            registers we intend to use in the assembly language code. It is
+            advisable to create a cross-reference table that defines what each
+            processor register is being used for within the algorithm (For
+            example <code>$t0: Sum, $v0: Count</code>). We use register names in
+            pseudocode so that the translation to assembly language code will be
+            an easy process to perform and because we want documentation that
+            describes how the features of the MIPS architecture were used to
+            implement the algorithm. Unless we identify the registers being
+            used, the pseudocode is quite limited in terms of deriving the
+            assembly language program or having any correspondence to the
+            assembly language code.
+          </p>
+          <p>
+            Pseudocode for assembly language programs will have the appearance
+            of <code>Pascal</code> or <code>C</code> in terms of control
+            structures and arithmetic expressions. Descriptive variable names
+            will usually appear only in the
+            <code>Load Address (la)</code> instruction where there is a
+            reference to a symbolic memory address. In assembly language we
+            define and allocate space for variables in the data segment of
+            memory using assembler directives such as <code>.word</code> and
+            <code>.space</code>. Strings are allocated space in memory using the
+            assembler directive <code>.asciiz</code>.
+          </p>
+          <pre>
+            <code>
+# a program to find the sum of the integers from 1 to "n"
+# pseudocode description of algorithm
+
+#main:   count&lt;&lt;"please input a value for N"
+#        cin&gt;&gt;v0
+#        if(v0&lt;=0)stop
+#        t0=0;
+#        while(v0&gt;0)do
+#              {
+#                t0=t0+v0;
+#                v0=v0-1;
+#              }
+#        cout&lt;&lt;t0;
+#        go to main
+
+# cross-references:
+#   v0:N,
+#   t0:Sum
+
+          .data
+prompt:   .asciiz   "\n please input a value for N = "
+result:   .asciiz   " the sum of the integers from 1 to N is "
+bye:      .asciiz   "\n goodbye"
+          .globl    main
+          .text
+main:
+          li        $v0,4             # system call code for print string
+          la        $a0,prompt        # load address of prompt into $a0
+          syscall                     # print the prompt message
+
+          li        $v0,5             # system call code for read integer
+          syscall                     # reads the value of N into $v0
+
+          blez      $v0,end           # branch to end if $v0 &lt;= 0
+          li        $t0,0             # clear register $t0 to zero
+loop:
+          add       $t0,$t0,$v0       # sum of integers in register $t0
+          addi      $v0,$v0,-1        # summing integers in reverse order
+          bnez      $v0,loop          # branch to loop if $v0 is != zero
+
+          li        $v0,4             # system call code for print string
+          la        $a0,result        # load address of message into $a0
+          syscall                     # print the string
+
+          li        $v0,1             # system call code for print integer
+          move      $a0,$t0           # move value to be printed to $a0
+          syscall                     # print sum of integers
+          b         main              # branch to main
+
+end:      li        $v0,4             # system call code for print string
+          la        $a0,bye           # load address of message into $a0
+          syscall                     # print the string
+
+          li        $v0,10            # terminate the program run and
+          syscall                     # return control to system
+            </code>
+          </pre>
         </article>
       </section>
     </main>
