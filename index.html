@@ -251,13 +251,47 @@ end:      li        $v0,4             # system call code for print string
               that does not call another function.
             </li>
             <li>
-              Registers <code>$t0</code> through <code>$t9</code> can be used with the understanding that no other code modules expect values in these register will be maintained/managed.
+              Registers <code>$s0</code> through <code>$s7</code> are referred
+              to as
+              <span style="font-style: italic; font-weight: bold"
+                >callee-saved</span
+              >
+              registers.
             </li>
             <li>
-              Registers <code>$s0</code> through <code>$s7</code> are referred to as <span style="font-style: italic;font-weight: bold;">callee-saved</span> registers.
+              If additional registers are required within in a function, the
+              programmer may only use registers <code>$s0</code> -
+              <code>$s7</code> so long as the current registers' values are
+              saved on the stack and restores their values before exiting the
+              function.
             </li>
             <li>
-              Registers <code>$t0</code> through <code>$t9</code> are referred to as <span style="font-style: italic; font-weight: bold;">caller-saved</span> registers.
+              Registers <code>$t0</code> through <code>$t9</code> are referred
+              to as
+              <span style="font-style: italic; font-weight: bold"
+                >caller-saved</span
+              >
+              registers.
+            </li>
+            <li>
+              Registers <code>$t0</code> through <code>$t9</code> can be used
+              with the understanding that no other code modules expect values in
+              these register will be maintained/managed.
+            </li>
+            <li>
+              If the code module requires that the contents of certain
+              "<code>t</code>" registries must be maintained/managed upon return
+              from a call to another function, then it is the responsibility of
+              the calling module to save these values on the stack and restore
+              the values upon returning from the function call.
+            </li>
+            <li>
+              Registries <code>$a0</code> through <code>$a3</code> are used to
+              pass arguments to functions.
+            </li>
+            <li>
+              Registries <code>$v0</code> and <code>$v1</code> are used to
+              return values from functions.
             </li>
           </ul>
         </article>
