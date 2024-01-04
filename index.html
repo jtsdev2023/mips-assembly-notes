@@ -212,7 +212,6 @@ end:      li        $v0,4             # system call code for print string
 
           li        $v0,10            # terminate the program run and
           syscall                     # return control to system
-
             </code>
           </pre>
           <div style="padding-left: 10rem">
@@ -295,6 +294,69 @@ end:      li        $v0,4             # system call code for print string
               return values from functions.
             </li>
           </ul>
+        </article>
+        <article>
+          <h3>2.4 The MIPS Instruction Set</h3>
+          <p>
+            3 types of MIPS instruction format:
+            <ul>
+              <li>R</li>
+              <li>J</li>
+              <li>I</li>
+            </ul>
+          </p>
+          <p>
+            MIPS assembler is the program that translate MIPS assembly language code to MIPS binary machine language code. The MIPS assembler provides a set of macro instructions (called <span style="font-style: italic;">synthetic</span> / <span style="font-style: italic;">pseudo</span> instructions). Every time a programmer specifies a macro instruction, the assembler replaces it with a set of actual MIPS instructions to accomplish the task.
+          </p>
+          <p>
+            Example:
+            <pre>
+              <code>
+abs       $s0, $t8
+              </code>
+            </pre>
+            MIPS assembler translation:
+            <pre>
+              <code>
+        addu      $s0,$t0,$t8
+        bgez      $t8,positive
+        sub       $s0,$zero,$t8
+positive:
+              </code>
+            </pre>
+          </p>
+        </article>
+        <article>
+          <h3>2.5 Translation of an "IF THEN ELSE" Control Structure</h3>
+          <p>
+            the <code>if(condition) then do {this block of code} else do {that block of code}</code> control structure is probably the most widely used by programmers.
+          </p>
+          <p>
+            Example:
+            <pre>
+              <code>
+if ($t8 &lt; 0) then
+      {$s0 = 0 - $t8;
+      $t1 = $t1 + 1}
+else
+      {$s0 = $t8;
+      $t2 = $t2 + 1}
+              </code>
+            </pre>
+            MIPS assembler translation:
+            <pre>
+              <code>
+      bgez      $t8,else
+      sub       $s0,$zero,$t8
+      addi      $t1,$t1,1
+      b         next
+else:
+      ori       $s0,$t8,0
+      addi      $t2,$t2,1
+next:
+              </code>
+            </pre>
+          </p>
         </article>
       </section>
     </main>
